@@ -21,7 +21,7 @@ use App\Http\Middleware\CheckGeneralUser;
 
 // });
 
-Route::resource('/employees', EmployeeController::class);
+Route::resource('employees', EmployeeController::class);
 
 Route::middleware([CheckGeneralUser::class])->group(function(){
     Route::get('/general', [HomeController::class, 'general_home']);
