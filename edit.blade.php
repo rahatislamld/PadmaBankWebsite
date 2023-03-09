@@ -11,7 +11,7 @@
 </style>
 <div class="card push-top">
   <div class="card-header">
-    Add Employee
+    <strong>Edit Employee</strong>
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -23,8 +23,9 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('employees.update') }}">
+      <form method="post" action="{{ route('employees.update',$employee->id)}}" enctype="multipart/form-data">
         @csrf
+        @method('PATCH')
         <div class="row">
             
             <div class="col">
@@ -84,11 +85,18 @@
               <input type="email" class="form-control" placeholder="Email" name="email"  value="{{ $employee->email }}" aria-label="First name">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Password" name="password" value="{{ $employee->passsword }}"aria-label="Last name">
+              <input type="text" class="form-control" placeholder="Password" name="password" value="{{ $employee->password }}"aria-label="Last name">
+            </div>
+          </div>
+          <div class="row">
+            
+            <div class="col">
+              <input type="file" name="profile_image" value="{{ $employee->profile_image }}" class="form-control">
+              <img src="{{ asset('uploads/employees/'.$employee->profile_image) }}"  width="70px" height="70px" alt="Image">
             </div>
           </div>
           <br>
-          <button type="submit" class="btn btn-danger">Update User</button>
+          <button type="submit" class="btn btn-danger">Update</button>
       </form>
   </div>
 </div>

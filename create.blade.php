@@ -2,13 +2,14 @@
 @extends('layout')
 @section('content')
 <style>
-    .container {
-      max-width: 450px;
-    }
-    .push-top {
-      margin-top: 50px;
-    }
+  .container {
+    max-width: 450px;
+  }
+  .push-top {
+    margin-top: 50px;
+  }
 </style>
+
 <div class="card push-top">
   <div class="card-header">
     Add Employee
@@ -23,7 +24,8 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('employees.store') }}">
+     
+      <form method="post" action="{{ route('employees.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             
@@ -87,9 +89,16 @@
               <input type="text" class="form-control" placeholder="Password" name="password"aria-label="Last name">
             </div>
           </div>
+          <div class="row">
+            
+            <div class="col">
+              <input type="file" class="form-control" placeholder="ProfileImage" name="profile_image"aria-label="Last name">
+            </div>
+          </div>
           <br>
           <button type="submit" class="btn btn-danger">Create User</button>
-      </form>
+        </form>
+      
   </div>
 </div>
 @endsection
