@@ -41,7 +41,15 @@
                 
                 <p class="u-align-left u-text u-text-3">
                   @foreach ($division->divisions as $div)
-                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="{{ url('team') }}" data-page-id="301504267" target="_blank"> {{$div->name}}<br>
+                    
+                  <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="{{ url('team') }}" data-page-id="301504267" target="_blank"> {{$div->name}}<br>
+                  <ul>
+                    @foreach ($div->departments as $dept)
+                    <ul>
+                      <li><a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="{{ url('team') }}" data-page-id="301504267" target="_blank"> {{$dept->name}}<br>
+                      </li>
+                      </ul>
+                    @endforeach
                   </a>
                   @endforeach
                   
