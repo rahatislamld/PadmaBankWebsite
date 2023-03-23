@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -49,11 +50,11 @@ class Alldivision extends Controller {
         $responses = DB::select('select * from alldivisions where name like \'' . $cur_char . '%\'');
         $departments = [];
         foreach($responses as $division){
-            $div_id = $division->division_id;
+            $div_id = $division->id;
             $depts = DB::select('select * from departments where division_id='.$div_id);
             $temp = new Department($division->id,$division->name, $depts);
             array_push($departments, $temp);
-            if($depts) echo $depts[0]->name;
+            // if($depts) echo $depts[0]->name;
         }
         // foreach ($responses->division_id as $division_id) {
         //     # code...
@@ -70,4 +71,3 @@ class Alldivision extends Controller {
 
    
 }
-
