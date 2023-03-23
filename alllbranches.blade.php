@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>All Divisions</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -35,39 +34,58 @@
   <body class="u-body u-xl-mode">
     <section class="u-clearfix  u-section-1" id="sec-1d72">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1"><span style="color:indigo"><b>Division Homepage</b></span></h2>
+        <h2 class="u-text u-text-1"><b>Branch Homepages</b></h2>
         <div class="u-expanded-width u-list u-list-1">
           <div class="u-repeater u-repeater-1">
 
-            @foreach ($divisions as $division)
+            @foreach ($branches as $branch)
 
-            <div > 
-               <div> 
-                <h4 style="text-transform:uppercase"class="u-align-left u-text u-text-2"><span style="color:indigo"><b>{{ $division->char }}</b></span></h4>
+            <div class="u-container-style u-list-item u-repeater-item u-list-item-1">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <h4 style="text-transform:uppercase"class="u-align-left u-text u-text-2 text"><b>{{ $branch->char }}</b></h4>
                 
-           
-                  @foreach ($division->divisions as $div)
-                  <ul>
+                {{-- <p class="u-align-left u-text u-text-3"> --}}
+
+
+                  {{-- <div class="container mt-3">
+                    <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#example" role="button">
+                            Link with href
+                        </a>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#example">
+                            Button with data-target
+                        </button>
+                    </p>
+                    <div class="collapse" id="example">
+                        <div class="card card-body">
+                            Sample content
+                        </div>
+                    </div>
+                </div>
+                 
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script> --}}
+                  @foreach ($branch->branches as $br)
+                  <ul >
                     <li style="list-style-type: none"> 
                       <div class="container mt-3">
                         <p>
-                          <a class="btn btn-primary btn-block" data-toggle="collapse" href="#{{ $div->name }}" role="button" style="background-color:indigo ">
-                            <b>{{ $div->name }}</b>
+                          <a class="btn btn-primary btn-block" data-toggle="collapse" href="#{{ $br->name }}" role="button" style="background-color:indigo ">
+                            <b>{{ $br->name }}</b>
                         </a>
                    
                    {{-- </p> --}}
-                   <div class="collapse" id="{{ $div->name }}">
+                   <div class="collapse" id="{{ $br->name }}">
                     <div class="card card-body">
-                      @foreach ($div->departments as $dept)
+                      @foreach ($br->sub_branches as $sub_br)
                    
-                      <ul  >
-                        
-                        <li style="list-style-type: none"  ><div class="container mt-3"><a  class="btn btn-primary btn-block" style="background-color:indigo" href="{{ url('team') }}"  target="_blank"><b><span style="color:aliceblue" >
-                           {{$dept->name}}</span></b></a></div>
+                      <ul >
+                        <li  style="list-style-type: none">
+                          <div class="container mt-3">
+                          <a  class="btn btn-primary btn-block"  style="background-color:indigo" href="{{ url('team') }}"  target="_blank"><b><span style="color: aliceblue"> {{$sub_br->name}}</span></b></a></div>
+
                         </li>
-                        
                         </ul>
-                      
                       
                       @endforeach
                     </div>
