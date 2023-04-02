@@ -1,9 +1,10 @@
-
 @extends('_template_adm.master')
 
 @php
-    $pagetitle = ucwords(lang('department', $translation));
+    $pagetitle = ucwords(lang('Employee', $translation));
     $link_get_data = route('admin.department.get_branches');
+    $link_get_data_dept = route('admin.unit.get_depts');
+    $link_get_data_unit = route('admin.unit.get_units');
     if (isset($data)) {
         $pagetitle .= ' (' . ucwords(lang('edit', $translation)) . ')';
         $link = route('admin.department.do_edit', $data->id);
@@ -36,127 +37,55 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        
-                        <div class="card push-top">
-                            <div class="card-header">
-                              Add Employee
-                            </div>
-                            <div class="card-body">
-                              @if ($errors->any())
-                                <div class="alert alert-danger">
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                                </div><br />
-                              @endif
-                               
-                                <form method="post" action="{{ route('employees.store') }}" enctype="multipart/form-data">
-                                  @csrf
-                                  <div class="form-row">
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Name</label>
-                                     <input type="text" class="form-control" placeholder="First name" name="name" aria-label="First name">
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">userName</label>
-                                      <input type="text" class="form-control" placeholder="User name" name="user_name" aria-label="Last name">
-                                    </div>
-                                  </div>
-                                 
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Branch</label>
-                                        <input type="text" class="form-control" placeholder="Brance" name="brance"  aria-label="First name">
-                                       
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Department</label>
-                                        <input type="text" class="form-control" placeholder="Department" name="department" aria-label="Last name">
-                                        
-                                    </div>
-                                </div>
-                                  <div class="form-row">
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Designation</label>
-                                      <input type="text" class="form-control" placeholder="Designation" name="designation" aria-label="First name">
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Functional Designation</label>
-                                      <input type="text" class="form-control" placeholder="FunctionalDesignation" name="functional_designation" aria-label="Last name">
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6" col-md-6>
-                                        <label for="inputState">Gender</label>
-                                      <input type="text" class="form-control" placeholder="Gender" name="gender" aria-label="First name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">DOB</label>
-                                      <input type="date" class="form-control" placeholder="DOB" name="dob" aria-label="Last name">
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Mobile</label>
-                                      <input type="tel" class="form-control" placeholder="Phone" name="phone"aria-label="First name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Office phone</label>
-                                      <input type="tel" class="form-control" placeholder="Officephone" name="office_phone"  aria-label="Last name">
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">IP Phone</label>
-                                      <input type="tel" class="form-control" placeholder="Ip phone" name="ip_phone" aria-label="First name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">PABX Phone</label>
-                                      <input type="tel" class="form-control" placeholder="Pabx Phone" name="pabx_phone"aria-label="Last name">
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Email</label>
-                                      <input type="email" class="form-control" placeholder="Email" name="email"  aria-label="First name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Password</label>
-                                      <input type="text" class="form-control" placeholder="Password" name="password" aria-label="Last name">
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Profile Image</label>
-                                      <input type="file" name="profile_image"  class="form-control">
-                                     
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputState">Joining Date</label>
-                                      <input type="date" name="joining_date"  class="form-control">
-                                     
-                                    </div>
-                                  </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-danger">Create User</button>
-                                  </form>
-                                
-                            </div>
-                          </div>
 
+                        <form class="form-horizontal form-label-left"   action="{{ route('applinks.store') }}"  method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control" 
+                                name="name" aria-label="First name">
+                                </div>
+                            </div>
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Links
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="url" class="form-control" 
+                                name="link" >
+                                </div>
+                            </div>
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" class="form-control" 
+                                name="image" aria-label="First name">
+                                </div>
+                            </div>
+                            <div class="control-label col-md-3 col-sm-3 col-xs-12">
+                            <button  type="submit" class="btn btn-danger">Submit</button>
+                            </div>
+
+
+                            {{-- <center>
+                            <div>
+                            Name :<input type="text" class="form-control" placeholder="First name"
+                                name="name" aria-label="First name">
+                                <div>
+                                </center> --}}
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
 
 @section('css')
     <!-- Switchery -->
@@ -171,5 +100,55 @@
     <!-- Select2 -->
     @include('_form_element.select2.script')
 
+    <script>
+        // Initialize Select2
+        $('.select2').select2();
+    </script>
 
+
+    {{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> --}}
+
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('#divisions').change(function() {
+                let div_id = jQuery(this).val();
+                // alert(div_id);
+
+                jQuery.ajax({
+                    url: '{{ $link_get_data }}',
+                    type: 'post',
+                    data: 'div_id=' + div_id + '&_token={{ csrf_token() }}',
+                    success: function(result) {
+                        jQuery('#branches').html(result)
+                    }
+                });
+            });
+
+            jQuery('#branches').change(function() {
+                let sid = jQuery(this).val();
+                jQuery.ajax({
+                    url: '{{ $link_get_data_dept }}',
+                    type: 'post',
+                    data: 'sid=' + sid + '&_token={{ csrf_token() }}',
+                    success: function(result) {
+                        jQuery('#depts').html(result)
+                    }
+                });
+            });
+
+            jQuery('#depts').change(function() {
+                let sid = jQuery(this).val();
+                jQuery.ajax({
+                    url: '{{ $link_get_data_unit }}',
+                    type: 'post',
+                    data: 'sid=' + sid + '&_token={{ csrf_token() }}',
+                    success: function(result) {
+                        jQuery('#units').html(result)
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection
