@@ -116,7 +116,7 @@
                         <a href="#" id="add">add &gt;&gt;</a>  
                        </div>  
                        <div style="float:left;text-align: center; margin:10px">  
-                        <select multiple id="select2"></select>  
+                        <select multiple id="select2" name="selected[]"></select>  
                         <a href="#" id="remove">&lt;&lt; remove</a>  
                        </div>
                       </div>
