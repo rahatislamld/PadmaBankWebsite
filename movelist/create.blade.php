@@ -94,10 +94,83 @@
 
                         <form class="form-horizontal form-label-left"   action="{{ route('movelist.store') }}"  method="POST" enctype="multipart/form-data">
                             @csrf
-                      <div class="center">
-                      <div style="float:left;text-align: center; margin:10px ">
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control"
+                                name="name" aria-label="First name">
+                                </div>
+                            </div>
 
-                        <label for="aoi">Area of Interest:</label>  
+                            <div class="form-group vinput_main_branch">
+                                <label for="parent branch" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Designation
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control select2" name="designation">
+                                        
+                                     
+                                            <option value="1" selected >
+                                              MD
+                                            </option>
+                                            <option value="2" >
+                                                DMD
+                                              </option>
+                                    
+                                  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Email
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" class="form-control"
+                                name="email" aria-label="email">
+                                </div>
+                            </div>
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Phone
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" class="form-control"
+                                name="phone" aria-label="phone">
+                                </div>
+                            </div>
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" class="form-control"
+                                name="image" aria-label="image">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            
+                            
+
+                            <div class="form-group vinput_main_branch">
+                                <label  class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Image
+                                </label>
+                               
+                            </div>
+
+
+                            
+
+                           
+
+                      <div class="form-group vinput_main_branch">
+                      <div style="text-align: center; margin:10px">
+
+                        <label for="aoi"></label>  
 
                         <select multiple id="select1" name="aoi[]">  
                           @foreach ($branches as $cntrl)
@@ -105,17 +178,10 @@
                                                 {{ $cntrl->name }}
                                             </option>
                                         @endforeach  
-                        </select>  
-                        {{-- <select class="form-control" name="parent_branch_id">
-                          @foreach ($branches as $cntrl)
-                              <option value="{{ $cntrl->id }}">
-                                  {{ $cntrl->name }}
-                              </option>
-                          @endforeach
-                      </select> --}}
+                        </select> 
                         <a href="#" id="add">add &gt;&gt;</a>  
                        </div>  
-                       <div style="float:left;text-align: center; margin:10px">  
+                       <div style="text-align: center; margin:10px">  
                         <select multiple id="select2" name="selected[]"></select>  
                         <a href="#" id="remove">&lt;&lt; remove</a>  
                        </div>
